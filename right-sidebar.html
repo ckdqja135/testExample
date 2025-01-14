@@ -13,6 +13,8 @@
 <!--	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 	<!-- Slick JS -->
 	<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	<!-- Kakao Map -->
+	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=80d6fac198542c9021cd4229a30df6b2"></script>
 </head>
 
 <body class="right-sidebar is-preload">
@@ -29,11 +31,11 @@
 			<nav id="nav">
 				<ul>
 					<li>
-						<a href="#">Company</a>
+						<a>Company</a>
 						<ul>
-							<li><a href="right-sidebar.html">회사 개요</a></li>
-							<li><a href="#">찾아 오시는 길</a></li>
-							<li><a href="#">CEO</a></li>
+							<li><a href="ourStory.html">Our Story</a></li>
+							<li><a href="location.html">Location</a></li>
+							<li><a href="ceo.html">CEO</a></li>
 							<!--                                 <li>-->
 							<!--                                    <a href="#">Phasellus consequat</a>-->
 							<!--                                    <ul>-->
@@ -46,12 +48,12 @@
 							<li><a href="#">Veroeros feugiat</a></li>
 						</ul>
 					</li>
-					<li><a href="project.html">Project</a>
+					<li><a>Project</a>
 						<ul>
-							<li><a href="right-sidebar.html">Hotel</a></li>
-							<li><a href="#">Golf</a></li>
-							<li><a href="#">Office</a></li>
-							<li><a href="#">Lounge</a></li>
+							<li><a href="hotel.html">Hotel</a></li>
+							<li><a href="golf.html">Golf</a></li>
+							<li><a href="office.html">Office</a></li>
+							<li><a href="lounge.html">Lounge</a></li>
 						</ul>
 					</li>
 					<li class="break"><a href="right-sidebar.html">Right Sidebar</a></li>
@@ -71,29 +73,49 @@
 					<!-- Content -->
 					<article id="content">
 						<header>
-							<h2>Right Sidebar</h2>
-							<p>Lorem ipsum dolor sit amet consectetur et sed adipiscing elit
-								dolor neque semper magna lorem ipsum.</p>
+							<h2>찾아오시는 길</h2>
+
 						</header>
-						<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-						<p>Ut sed tortor luctus, gravida nibh eget, volutpat odio. Proin rhoncus, sapien
-							mollis luctus hendrerit, orci dui viverra metus, et cursus nulla mi sed elit. Vestibulum
-							condimentum, mauris a mattis vestibulum, urna mauris cursus lorem, eu fringilla lacus
-							ante non est. Nullam vitae feugiat libero, eu consequat sem. Proin tincidunt neque
-							eros. Duis faucibus blandit ligula, mollis commodo risus sodales at. Sed rutrum et
-							turpis vel blandit. Nullam ornare congue massa, at commodo nunc venenatis varius.
-							Praesent mollis nisi at vestibulum aliquet. Sed sagittis congue urna ac consectetur.</p>
-						<p>Mauris eleifend eleifend felis aliquet ornare. Vestibulum porta velit at elementum
-							gravida nibh eget, volutpat odio. Proin rhoncus, sapien
-							mollis luctus hendrerit, orci dui viverra metus, et cursus nulla mi sed elit. Vestibulum
-							condimentum, mauris a mattis vestibulum, urna mauris cursus lorem, eu fringilla lacus
-							ante non est. Nullam vitae feugiat libero, eu consequat sem. Proin tincidunt neque
-							eros. Duis faucibus blandit ligula, mollis commodo risus sodales at. Sed rutrum et
-							turpis vel blandit. Nullam ornare congue massa, at commodo nunc venenatis varius.
-							Praesent mollis nisi at vestibulum aliquet. Sed sagittis congue urna ac consectetur.</p>
-						<p>Vestibulum pellentesque posuere lorem non aliquam. Mauris eleifend eleifend
-							felis aliquet ornare. Vestibulum porta velit at elementum elementum.</p>
-					</article>
+						<script>
+							// 지도를 생성할 위치 지정
+							var mapContainer = document.getElementById('map'); // 지도를 표시할 div
+							var mapOption = {
+								center: new kakao.maps.LatLng(37.5665, 126.9780), // 지도의 중심좌표 (서울시청)
+								level: 3 // 지도의 확대 레벨
+							};
+
+							// 지도 생성
+							var map = new kakao.maps.Map(mapContainer, mapOption);
+
+							// 마커 생성
+							var markerPosition  = new kakao.maps.LatLng(37.5665, 126.9780);
+							var marker = new kakao.maps.Marker({
+								position: markerPosition
+							});
+
+							// 마커를 지도에 표시
+							marker.setMap(map);
+						</script>
+
+						<!--						<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>-->
+<!--						<p>Ut sed tortor luctus, gravida nibh eget, volutpat odio. Proin rhoncus, sapien-->
+<!--							mollis luctus hendrerit, orci dui viverra metus, et cursus nulla mi sed elit. Vestibulum-->
+<!--							condimentum, mauris a mattis vestibulum, urna mauris cursus lorem, eu fringilla lacus-->
+<!--							ante non est. Nullam vitae feugiat libero, eu consequat sem. Proin tincidunt neque-->
+<!--							eros. Duis faucibus blandit ligula, mollis commodo risus sodales at. Sed rutrum et-->
+<!--							turpis vel blandit. Nullam ornare congue massa, at commodo nunc venenatis varius.-->
+<!--							Praesent mollis nisi at vestibulum aliquet. Sed sagittis congue urna ac consectetur.</p>-->
+<!--						<p>Mauris eleifend eleifend felis aliquet ornare. Vestibulum porta velit at elementum-->
+<!--							gravida nibh eget, volutpat odio. Proin rhoncus, sapien-->
+<!--							mollis luctus hendrerit, orci dui viverra metus, et cursus nulla mi sed elit. Vestibulum-->
+<!--							condimentum, mauris a mattis vestibulum, urna mauris cursus lorem, eu fringilla lacus-->
+<!--							ante non est. Nullam vitae feugiat libero, eu consequat sem. Proin tincidunt neque-->
+<!--							eros. Duis faucibus blandit ligula, mollis commodo risus sodales at. Sed rutrum et-->
+<!--							turpis vel blandit. Nullam ornare congue massa, at commodo nunc venenatis varius.-->
+<!--							Praesent mollis nisi at vestibulum aliquet. Sed sagittis congue urna ac consectetur.</p>-->
+<!--						<p>Vestibulum pellentesque posuere lorem non aliquam. Mauris eleifend eleifend-->
+<!--							felis aliquet ornare. Vestibulum porta velit at elementum elementum.</p>-->
+<!--					</article>-->
 
 				</div>
 				<div class="col-4 col-12-narrower">
