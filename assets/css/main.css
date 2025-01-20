@@ -2106,10 +2106,10 @@ input, select, textarea {
 		position: relative;
 		padding: 4em 0 2em 0;
 		background-image: url("images/header.svg");
-		background-image: url("images/overlay.png"), url("images/header.svg"), -moz-linear-gradient(75deg, #FF7088 15%, #F2B69D 55%);
-		background-image: url("images/overlay.png"), url("images/header.svg"), -webkit-linear-gradient(75deg, #FF7088 15%, #F2B69D 55%);
-		background-image: url("images/overlay.png"), url("images/header.svg"), -ms-linear-gradient(75deg, #FF7088 15%, #F2B69D 55%);
-		background-image: url("images/overlay.png"), url("images/header.svg"), linear-gradient(75deg, #FF7088 15%, #F2B69D 55%);
+		background-image: url("images/overlay.png"), url("images/header.svg"), -moz-linear-gradient(75deg, #45474a 15%, #333333 45%);
+		background-image: url("images/overlay.png"), url("images/header.svg"), -webkit-linear-gradient(75deg, #52575c 15%, #333333 45%);
+		background-image: url("images/overlay.png"), url("images/header.svg"), -ms-linear-gradient(75deg, #52575c 15%, #333333 45%);
+		background-image: url("images/overlay.png"), url("images/header.svg"), linear-gradient(75deg, #45474a 15%, #333333 45%);
 		background-color: #f08c89;
 		background-size: 100% 620%;
 		background-size: 128px 128px, 100% 620%, auto;
@@ -2132,10 +2132,12 @@ input, select, textarea {
 	}
 
 	#footer-wrapper {
+		height: 300px; /* 원하는 높이 값으로 설정 */
 		-webkit-transform: translate3d(0, 0, 0);
 		position: relative;
+		margin-top: 9px; /* 푸터를 아래로 내리기 */
 		border-top: solid 1px #c2c7cc;
-		padding: 1em 0 1em 0;
+		padding: 2em 0 2em 0;
 		background-image: url("images/overlay.png"), url("images/footer.svg");
 		background-size: 128px 128px,100% 100%;
 	}
@@ -2146,17 +2148,48 @@ input, select, textarea {
 		position: absolute;
 		z-index: 1;
 		/* top 값을 기존 0에서 -1em(또는 -10px 등 원하는 크기)으로 조정 */
-		top: -0.5em; /* 예시로 0.5em 만큼 위로 이동시킨 경우 */
+		top: 0.1em; /* 예시로 0.5em 만큼 위로 이동시킨 경우 */
 		left: 50%;
-		width: 7em;
-		height: 7em;
+		width: 5.5em;
+		height: 5.5em;
 		margin-left: -3em;
 
-		background-image: url("../../images/logo.png");
+		background-image: url("../../images/logo2.png");
 		background-size: contain;
 		background-position: center;
 		background-repeat: no-repeat;
 	}
+
+		@media (max-width: 500px) {
+			#logo {
+				/*left: 50%; !* 화면 오른쪽으로 정렬 *!*/
+				transform: translate(13%, 0); /* 완전히 오른쪽에 정렬되도록 보정 */
+				width: 6em; /* 로고 크기 축소 */
+				height: 6em;
+			}
+		}
+
+		.main-content {
+			position: relative;
+			top: 10px; /* 위에서 40px 아래로 이동 */
+			font-family: 'Noto Sans KR', sans-serif; /* 글꼴 */
+			font-size: 1.2rem; /* 폰트 사이즈 */
+			line-height: 1.6; /* 줄 간격 */
+			text-align: center; /* 텍스트 정렬 */
+			margin: 40px auto; /* 위쪽에 40px 간격 추가 */
+			max-width: 700px; /* 텍스트가 지나치게 길어지는 것을 방지하기 위해 */
+		}
+		.footer-content {
+			display: flex;
+			position: relative;
+			top: 10px; /* 위에서 40px 아래로 이동 */
+			font-family: 'Noto Sans KR', sans-serif; /* 글꼴 */
+			font-size: 1.2rem; /* 폰트 사이즈 */
+			line-height: 1.6; /* 줄 간격 */
+			text-align: center; /* 텍스트 정렬 */
+			margin: 40px auto; /* 위쪽에 40px 간격 추가 */
+			max-width: 700px; /* 텍스트가 지나치게 길어지는 것을 방지하기 위해 */
+		}
 
 		#logo a {
 			display: block;
@@ -2398,6 +2431,8 @@ input, select, textarea {
 /* Footer */
 
 	#footer {
+		height: 10px;
+		display: flex;
 		position: relative;
 		z-index: 1;
 	}
@@ -2412,7 +2447,7 @@ input, select, textarea {
 		position: relative;
 		z-index: 1;
 		text-align: center;
-		border-top: solid 1px #d2d7dc;
+		/*border-top: solid 1px #d2d7dc;*/
 		color: #a2a7ac;
 		padding-top: 4em;
 		margin-top: 6em;
@@ -2451,8 +2486,8 @@ input, select, textarea {
 				padding: 5em 0 5em 0;
 			}
 
-			#footer-wrapper {
-				padding: 5em 0 5em 0;
+			#footer-wraper {
+				padding: 10em 10em 10em 10em;
 			}
 
 	}
@@ -2496,9 +2531,9 @@ input, select, textarea {
 				padding: 2em;
 			}
 
-			#footer-wrapper {
-				padding: 4em 2em 4em 2em;
-			}
+			/*#footer-wrapper {*/
+			/*	padding: 4em 2em 4em 2em;*/
+			/*}*/
 
 		/* Header */
 
@@ -2553,11 +2588,6 @@ input, select, textarea {
 				}
 
 		/* Copyright */
-
-			#copyright {
-				padding-top: 2em;
-				margin-top: 3em;
-			}
 
 	}
 
@@ -2732,9 +2762,9 @@ input, select, textarea {
 				padding: 20px;
 			}
 
-			#footer-wrapper {
-				padding: 3em 20px 3em 20px;
-			}
+			/*#footer-wrapper {*/
+			/*	padding: 3em 20px 3em 20px;*/
+			/*}*/
 
 		/* Header */
 
