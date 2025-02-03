@@ -16,9 +16,11 @@
   <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=80d6fac198542c9021cd4229a30df6b2"></script>
   <style>
     img {
-      max-width: 100%; /* 이미지가 부모 요소를 벗어나지 않도록 설정 */
+      max-width: 200%; /* 이미지가 부모 요소를 벗어나지 않도록 설정 */
       height: auto; /* 이미지 비율을 유지하면서 크기 조정 */
       display: block; /* inline-block 여백 문제를 방지 */
+      transform: scale(1.5);
+      margin: 0 auto;
     }
   </style>
 </head>
@@ -71,7 +73,7 @@
 
   <!-- Main -->
   <div class="wrapper">
-    <div class="container" id="main">
+    <div class="container2" id="main">
 
       <!-- Content -->
       <article id="content">
@@ -80,10 +82,14 @@
           <p>Lorem ipsum dolor sit amet consectetur et sed adipiscing elit
             dolor neque semper.</p>
         </header>
+      <br />
+      <br />
 
       </article>
-      <img src="images/our1.png" alt="our1">
       <img src="images/our2.png" alt="our2">
+      <br />
+      <br />
+      <img src="images/our1.png" alt="our1">
     </div>
   </div>
 
