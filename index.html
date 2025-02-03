@@ -30,7 +30,23 @@
       <!-- Slick JS -->
       <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
+      <style>
+         .slick-slide {
+            width: 100%; /* 너비를 화면 전체에 맞춤 */
+            height: 600px; /* 원하는 높이로 설정 */
+            display: flex; /* 중앙 정렬을 위한 flexbox */
+            justify-content: center; /* 수평 중앙 정렬 */
+            align-items: center; /* 수직 중앙 정렬 */
+         }
 
+         .slick-slide img {
+            display: block;
+            margin: 0 auto; /* 수평 중앙 정렬 */
+            max-width: 100%; /* 부모 요소를 벗어나지 않도록 설정 */
+            object-fit: cover; /* 이미지가 잘리지 않고 비율을 유지하면서 중앙 정렬 */
+            transform: scale(1.5);
+         }
+      </style>
    </head>
    <body class="left-sidebar is-preload">
       <div id="page-wrapper">
@@ -84,18 +100,18 @@
                   <!-- Image Slider -->
                   <div class="slider">
                         <div>
-                           <img src="images/39.jpg" alt="Slide 1">
-						   <style>
-							.slick-slide img {
-							   display: block;
-							   margin: 0 auto; /* 수평 중앙 정렬 */
-							   max-width: 100%; /* 부모 요소를 벗어나지 않도록 설정 */
-							   max-height: 100%; /* 부모 요소를 벗어나지 않도록 설정 */
-							   object-fit: cover; /* 이미지가 잘리지 않고 비율을 유지하면서 중앙 정렬 */
-							}
-						 </style>
+                           <img src="images/60.jpg" alt="Slide 1">
                         </div>
-						                  </div>
+                        <div>
+                           <img src="images/59.jpg" alt="Slide 1">
+                        </div>
+                        <div>
+                           <img src="images/64.jpg" alt="Slide 1">
+                        </div>
+                        <div>
+                           <img src="images/65.jpg" alt="Slide 1">
+                        </div>
+                  </div>
                   <!-- End of Image Slider -->
                <div class="row features">
                </div>
@@ -139,8 +155,6 @@
                   dots: true
                });
             });
-
-			
          </script>
    </body>
 
