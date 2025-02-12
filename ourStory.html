@@ -16,12 +16,32 @@
   <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=80d6fac198542c9021cd4229a30df6b2"></script>
   <style>
     img {
-      max-width: 100%; /* 이미지가 부모 요소를 벗어나지 않도록 설정 */
-      height: auto; /* 이미지 비율을 유지하면서 크기 조정 */
-      display: block; /* inline-block 여백 문제를 방지 */
-      transform: scale(1.0);
-      margin: 0 auto;
+      max-width: 90%; /* 이미지가 부모 요소의 80%까지만 확장되도록 */
+      max-height: 500px; /* 최대 높이를 제한하여 일정한 크기 유지 */
+      height: auto; /* 가로세로 비율 유지 */
+      display: block; /* 인라인 요소 문제 방지 */
+      margin: 20px auto; /* 가운데 정렬 및 위아래 여백 조정 */
+      object-fit: contain; /* 이미지 비율을 유지하면서도 컨테이너에 맞춤 */
+      transform: scale(1.5);
     }
+
+    @media (max-width: 768px) {
+      img {
+        max-width: 100%; /* 모바일에서는 화면 전체를 사용 */
+        max-height: 400px; /* 너무 크지 않도록 높이 제한 */
+      }
+    }
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%; /* 부모 요소의 크기에 맞게 조정 */
+      max-width: 1000px; /* 최대 너비 설정 */
+      margin: 0 auto; /* 가운데 정렬 */
+    }
+
+
   </style>
 </head>
 <body class="no-sidebar is-preload">
@@ -76,20 +96,22 @@
     <div class="container2" id="main">
 
       <!-- Content -->
-      <article id="content">
-        <header>
-          <h2>No Sidebar</h2>
-          <p>Lorem ipsum dolor sit amet consectetur et sed adipiscing elit
-            dolor neque semper.</p>
-        </header>
-      <br />
-      <br />
+<!--      <article id="content">-->
+<!--        <header>-->
+<!--&lt;!&ndash;          <h2>No Sidebar</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;          <p>Lorem ipsum dolor sit amet consectetur et sed adipiscing elit&ndash;&gt;-->
+<!--&lt;!&ndash;            dolor neque semper.</p>&ndash;&gt;-->
+<!--        </header>-->
+<!--      <br />-->
 
-      </article>
-      <img src="images/our2.png" alt="our2">
+<!--      </article>-->
+      <div class="image-container">
+        <img src="images/our2.png" alt="our2">
+      </div>
       <br />
-      <br />
-      <img src="images/our1.png" alt="our1">
+      <div class="image-container">
+        <img src="images/our1.png" alt="our1">
+      </div>
     </div>
   </div>
 
