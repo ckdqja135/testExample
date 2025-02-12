@@ -40,6 +40,31 @@
       max-width: 1000px; /* 최대 너비 설정 */
       margin: 0 auto; /* 가운데 정렬 */
     }
+    .wrapper {
+      position: relative; /* 가상 요소가 부모를 기준으로 정렬되도록 설정 */
+      background-image: url("images/90.png"); /* 배경 이미지 설정 */
+      background-size: cover; /* 배경을 요소 크기에 맞게 조절 */
+      background-position: center; /* 배경을 중앙 정렬 */
+      background-repeat: no-repeat; /* 이미지 반복 방지 */
+      width: 100%;
+      height: 100vh;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    /* 배경 투명도 조절을 위한 오버레이 */
+    .wrapper::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.7); /* 흰색 반투명 오버레이 (0.0~1.0 조절) */
+      z-index: 0; /* 다른 요소보다 뒤에 위치 */
+    }
+
+
 
 
   </style>
@@ -72,7 +97,7 @@
               <!--                                       <li><a href="#">Etiam dolore nisl</a></li>-->
               <!--                                    </ul>-->
               <!--                                 </li>-->
-              <li><a href="#">Veroeros feugiat</a></li>
+              <li><a href="#">vish</a></li>
             </ul>
           </li>
           <li><a>Project</a>
@@ -84,7 +109,7 @@
             </ul>
           </li>
           <li class="break"><a href="location.html">Location</a></li>
-          <li><a href="no-sidebar.html">No Sidebar</a></li>
+          <li><a href="VisionGoals.html">Vision & Goals</a></li>
         </ul>
       </nav>
 
