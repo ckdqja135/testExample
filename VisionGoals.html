@@ -1,10 +1,226 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<!--
+    Telephasic by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <title>㈜공감ID</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!-- Slick JS -->
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=80d6fac198542c9021cd4229a30df6b2"></script>
+    <style>
+        .wrapper {
+            position: relative; /* 가상 요소가 부모를 기준으로 정렬되도록 설정 */
+            background-image: url("images/90.png"); /* 배경 이미지 설정 */
+            background-size: cover; /* 배경을 요소 크기에 맞게 조절 */
+            background-position: center; /* 배경을 중앙 정렬 */
+            background-repeat: no-repeat; /* 이미지 반복 방지 */
+            width: 100%;
+            height: 80%;
+            overflow: hidden;
+        }
 
+        /* 배경 투명도 조절을 위한 오버레이 */
+        .wrapper::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7); /* 흰색 반투명 오버레이 (0.0~1.0 조절) */
+            z-index: 0; /* 다른 요소보다 뒤에 위치 */
+        }
+
+        /* 모달 배경 (어두운 오버레이) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        /* 모달 창 */
+        .modal {
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            text-align: center;
+        }
+
+        /* 닫기 버튼 (모달 중앙) */
+        .close-btn {
+            display: block;
+            margin: 20px auto 0; /* 중앙 정렬 */
+            padding: 10px 20px;
+            background: crimson;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* 버튼 스타일 */
+        .open-modal-btn {
+            margin-top: 50px;
+            padding: 10px 20px;
+            background: royalblue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="no-sidebar is-preload">
+<div id="page-wrapper">
+    <div class="modal-overlay">
+        <div class="modal">
+            <h2>문의 </h2>
+            <p>00:00 ~ 00:00</p>
+            <p>051-714-3163</p>
+            <button class="close-btn">닫기</button> <!-- 모달 중앙 닫기 버튼 -->
+        </div>
+    </div>
+    <!-- Header -->
+    <div id="header-wrapper">
+        <div id="header" class="container">
+
+            <!-- Logo -->
+            <h1 id="logo"><a href="index.html"></a></h1>
+
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li>
+                        <a>Company</a>
+                        <ul>
+                            <li><a href="ourStory.html">Our Story</a></li>
+                            <!--							<li><a href="location.html">Location</a></li>-->
+                            <li><a href="ceo.html">CEO</a></li>
+                            <!--                                 <li>-->
+                            <!--                                    <a href="#">Phasellus consequat</a>-->
+                            <!--                                    <ul>-->
+                            <!--                                       <li><a href="#">Lorem ipsum dolor</a></li>-->
+                            <!--                                       <li><a href="#">Phasellus consequat</a></li>-->
+                            <!--                                       <li><a href="#">Magna phasellus</a></li>-->
+                            <!--                                       <li><a href="#">Etiam dolore nisl</a></li>-->
+                            <!--                                    </ul>-->
+                            <!--                                 </li>-->
+                            <li><a href="VisionGoals.html">Vision & Goals</a></li>
+                        </ul>
+                    </li>
+                    <li><a>Project</a>
+                        <ul>
+                            <li><a href="hotel.html">Hotel</a></li>
+                            <li><a href="golf.html">Golf</a></li>
+                            <li><a href="office.html">Office</a></li>
+                            <li><a href="lounge.html">Lounge</a></li>
+                        </ul>
+                    </li>
+                    <li class="break"><a href="location.html">Location</a></li>
+                    <li><a href="#" onclick="openPopup()">QnA</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="wrapper">
+        <div class="container2" id="main">
+
+            <!-- Content -->
+            <!--      <article id="content">-->
+            <!--        <header>-->
+            <!--&lt;!&ndash;          <h2>No Sidebar</h2>&ndash;&gt;-->
+            <!--&lt;!&ndash;          <p>Lorem ipsum dolor sit amet consectetur et sed adipiscing elit&ndash;&gt;-->
+            <!--&lt;!&ndash;            dolor neque semper.</p>&ndash;&gt;-->
+            <!--        </header>-->
+            <!--      <br />-->
+
+            <!--      </article>-->
+            <!--            <div class="image-container">-->
+            <!--                <img src="images/our2.png" alt="our2">-->
+            <!--            </div>-->
+            <!--            <br />-->
+            <!--            <div class="image-container">-->
+            <!--                <img src="images/our1.png" alt="our1">-->
+            <!--            </div>-->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <!--         <div id="footer-wrapper">-->
+    <!--            <div id="footer" class="container">-->
+    <div class="container">
+        <ul class="menu">
+            <li>사업자 등록 : 732-86-02749</li>
+            <li>주소 : 부산시 수영구 좌수영로 115, 3층</li>
+            <li>Tel : 051. 714. 3163</li>
+            <br />
+            <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </div>
+    <!--            </div>-->
+    <!--         </div>-->
+
+</div>
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+    const modalOverlay = document.querySelector(".modal-overlay");
+    const closeModalBtn = document.querySelector(".close-btn");
+
+    // 모달 열기
+    function openPopup() {
+        modalOverlay.style.display = "block";
+    }
+
+    // 모달 닫기 (중앙 닫기 버튼)
+    function closePopup() {
+        modalOverlay.style.display = "none";
+    }
+
+    // 닫기 버튼 클릭 시 모달 닫기
+    closeModalBtn.addEventListener('click', closePopup);
+
+    // 모달 닫기 (배경 클릭)
+    modalOverlay.addEventListener('click', function (e) {
+        if (e.target === modalOverlay) {
+            closePopup();
+        }
+    });
+
+    // QnA 버튼 클릭 이벤트
+    document.querySelector("a[href='#']").addEventListener("click", function(e) {
+        e.preventDefault();
+        openPopup();
+    });
+</script>
 </body>
 </html>

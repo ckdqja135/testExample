@@ -1899,10 +1899,18 @@ input, select, textarea {
 
 /* Menu */
 
-	ul.menu {
-		list-style: none;
-		padding-left: 0;
-	}
+	/*ul.menu {*/
+	/*	list-style: none;*/
+	/*	padding-left: 0;*/
+	/*}*/
+ul.menu {
+	list-style: none;
+	padding-left: 0;
+	display: flex;
+	justify-content: center; /* 가로 가운데 정렬 */
+	align-items: center; /* 세로 가운데 정렬 (필요하면 추가) */
+	/*gap: 10px; !* 리스트 아이템 간격 조절 *!*/
+}
 
 		ul.menu li {
 			display: inline-block;
