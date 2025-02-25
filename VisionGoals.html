@@ -17,12 +17,12 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <style>
         .wrapper {
             position: relative; /* 가상 요소가 부모를 기준으로 정렬되도록 설정 */
-            background-image: url("images/90.png"); /* 배경 이미지 설정 */
+            background-image: url("images/직박구리/한남동리움미술/3.png"); /* 배경 이미지 설정 */
             background-size: cover; /* 배경을 요소 크기에 맞게 조절 */
             background-position: center; /* 배경을 중앙 정렬 */
             background-repeat: no-repeat; /* 이미지 반복 방지 */
             width: 100%;
-            height: 80%;
+            height: 100%;
             overflow: hidden;
         }
 
@@ -88,6 +88,103 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             border-radius: 5px;
             cursor: pointer;
         }
+        /* wrapper는 기존 배경이미지와 투명도 처리가 되어 있다고 가정 */
+
+        /* 바깥 컨테이너: 좌우 100% 폭 + 반투명 박스 */
+        .vision-goals {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px); /* 브라우저 지원 시 배경 블러 효과 */
+            padding: 3em 0; /* 위아래 간격만 적용 (좌우는 없앰) */
+            box-sizing: border-box;
+        }
+
+        /* 안쪽 텍스트 컨테이너: 최대 너비 제한 + 가운데 정렬 */
+        .vision-content {
+            max-width: 800px; /* 글 영역 최대 너비 */
+            margin: 0 auto;   /* 수평 중앙 정렬 */
+            padding: 0 1.5em; /* 좌우 여백 (화면이 좁을 때 대비) */
+            color: #333;
+            text-align: left; /* 텍스트 정렬 (필요 시 center로 조정 가능) */
+        }
+
+        /* 내용에 스타일을 추가하고 싶다면 */
+        .vision-content h2 {
+            margin-top: 1.5em;
+            font-size: 1.5rem;
+        }
+
+        .vision-content p {
+            margin: 1em 0;
+            line-height: 1.6;
+        }
+
+        /* 큰 제목 스타일 */
+        .vision-goals h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #111;
+            letter-spacing: 1px;
+        }
+
+        /* 중간 제목 스타일 */
+        .vision-goals h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #222;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        /* h3 아래 얇은 라인 */
+        .vision-goals h3::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: #ccc;
+        }
+
+        /* 목표 리스트 */
+        .vision-goals ul {
+            list-style: none; /* 기본 불릿 제거 */
+            padding: 0;
+            margin: 1rem 0 2rem 0;
+            text-align: left; /* 목록은 왼쪽 정렬 */
+        }
+
+        /* 각 항목에 간단한 기호 */
+        .vision-goals li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .vision-goals li::before {
+            content: "—"; /* 모던한 느낌의 대시 기호 */
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+
+        /* 마지막 문단 (클로징 멘트) */
+        .vision-goals .closing {
+            margin-top: 5rem;
+            margin-bottom: 3em;
+            font-style: italic;
+            color: #444;
+        }
+
+        p {
+            white-space: nowrap; /* 줄바꿈을 허용하지 않음 */
+        }
+
     </style>
 </head>
 <body class="no-sidebar is-preload">
@@ -131,8 +228,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 <li><a>Project</a>
                     <ul>
                         <li><a href="hotel.html">Hotel</a></li>
-                        <li><a href="office.html">Office</a></li>
                         <li><a href="lounge.html">Lounge</a></li>
+                        <li><a href="ETC.html">ETC</a></li>
                     </ul>
                 </li>
                 <li class="break"><a href="location.html">Location</a></li>
@@ -147,25 +244,41 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <div class="wrapper">
         <div class="container2" id="main">
 
-            <!-- Content -->
-            <!--      <article id="content">-->
-            <!--        <header>-->
-            <!--&lt;!&ndash;          <h2>No Sidebar</h2>&ndash;&gt;-->
-            <!--&lt;!&ndash;          <p>Lorem ipsum dolor sit amet consectetur et sed adipiscing elit&ndash;&gt;-->
-            <!--&lt;!&ndash;            dolor neque semper.</p>&ndash;&gt;-->
-            <!--        </header>-->
-            <!--      <br />-->
+            <!-- Vision & Goals 섹션 -->
+            <section class="vision-goals">
+                <h2>공감아이디 Vision & Goals</h2>
 
-            <!--      </article>-->
-            <!--            <div class="image-container">-->
-            <!--                <img src="images/our2.png" alt="our2">-->
-            <!--            </div>-->
-            <!--            <br />-->
-            <!--            <div class="image-container">-->
-            <!--                <img src="images/our1.png" alt="our1">-->
-            <!--            </div>-->
+                <h3>비전 (Vision)</h3>
+                <p>
+                    공감아이디는 단순한 인테리어를 넘어, 고객의 삶을 변화시키는 디자인을 창조하는 브랜드로 성장하고자 합니다.
+                    우리는 공간이 사람들에게 영감을 주고, 편안함을 제공하며, 지속적인 가치를 지닐 수 있도록 디자인합니다.
+                </p>
+
+                <h3>목표 (Goals)</h3>
+                <div class="vision-content">
+                    <h2>맞춤형 디자인 혁신</h2>
+                    <p>고객의 라이프스타일과 개성을 반영한 공간을 창조하여, 단 하나뿐인 맞춤형 인테리어 솔루션을 제공합니다.</p>
+
+                    <h2>지속 가능한 디자인</h2>
+                    <p>친환경 소재와 지속 가능한 인테리어 방식을 도입하여, 환경과 조화를 이루는 공간을 설계합니다.</p>
+
+                    <h2>디자인 트렌드 리더</h2>
+                    <p>최신 인테리어 트렌드를 반영하면서도, 시간이 지나도 변하지 않는 감각적이고 실용적인 공간을 제안합니다.</p>
+
+                    <h2>최고의 고객 경험 제공</h2>
+                    <p>고객과의 긴밀한 소통을 기반으로, 설계부터 시공까지 완벽한 서비스를 제공하여 최상의 만족도를 실현합니다.</p>
+                </div>
+
+                <p class="closing">
+                    공감아이디는 단순한 공간 디자인을 넘어, 삶을 더욱 가치 있게 만드는 디자인을 목표로 합니다.
+                    우리는 앞으로도 더 나은 공간을 만들기 위해 끊임없이 고민하고 발전해 나가겠습니다.
+                </p>
+            </section>
+
         </div>
     </div>
+
+
 
     <!-- Footer -->
     <!-- Footer -->
