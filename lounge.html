@@ -10,6 +10,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/footer.css" />
+		<link rel="stylesheet" href="assets/css/header.css" />
 
 		<!-- jQuery (필수) -->
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -31,319 +33,309 @@
 	<style>
 		.wrapper {
 			background-color: rgba(128, 128, 128, 0.3); /* 베이지색, 투명도 0.8 (80%) */
+			padding: 0;
+			padding-top: 20px; /* 헤더와 콘텐츠 사이 간격 추가 */
 		}
-		.slick-slide img {
-			display: block;
-			margin: 0 auto; /* 수평 중앙 정렬 */
-			max-width: 100%; /* 부모 요소를 벗어나지 않도록 설정 */
-			max-height: 100%; /* 부모 요소를 벗어나지 않도록 설정 */
-			object-fit: cover; /* 이미지가 잘리지 않고 비율을 유지하면서 중앙 정렬 */
-		}
-		/* 모달 배경 (어두운 오버레이) */
-		.modal-overlay {
-			display: none;
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: rgba(0, 0, 0, 0.5);
-			z-index: 1000;
-		}
-
-		/* 모달 창 */
-		.modal {
-			position: fixed;
-			top: 10%;
-			left: 50%;
-			transform: translateX(-50%);
-			width: 300px;
-			background: white;
-			padding: 20px;
-			border-radius: 10px;
-			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-			z-index: 1001;
+		
+		/* 슬라이더 섹션 제목 스타일 */
+		.project-title {
+			font-size: 24px;
+			font-weight: bold;
 			text-align: center;
+			margin: 40px 0 20px;
+			color: #333;
 		}
-
-		/* 닫기 버튼 (모달 중앙) */
-		.close-btn {
-			display: block;
-			margin: 20px auto 0; /* 중앙 정렬 */
-			padding: 10px 20px;
-			background: crimson;
-			color: white;
+		
+		/* 슬라이더 컨테이너 스타일 */
+		.slider {
+			width: 100%;
+			max-width: 1200px;
+			height: 760px;
+			margin: 0 auto 60px;
+			overflow: hidden;
+			box-shadow: none;
+			border-radius: 0;
+			background-color: transparent;
+			padding: 0;
 			border: none;
-			border-radius: 5px;
-			cursor: pointer;
-			font-size: 16px;
+			position: relative;
 		}
-
-		/* 버튼 스타일 */
-		.open-modal-btn {
-			margin-top: 50px;
-			padding: 10px 20px;
-			background: royalblue;
-			color: white;
-			border: none;
-			border-radius: 5px;
-			cursor: pointer;
-		}
-		@media (max-width: 768px) {
-			.slick-slide {
-				width: 100% !important; /* 슬라이드 너비를 100%로 고정 */
-			}
-			.slick-track {
-				display: flex;
-				justify-content: center;
-			}
-		}
-
-		.slick-list {
-			overflow: hidden; /* 영역 밖 콘텐츠 숨기기 */
-			position: relative; /* 위치 설정 */
-		}
-
-		.slick-track {
-			display: flex; /* 트랙 정렬 */
-			transition: transform 0.3s ease-in-out; /* 부드러운 슬라이딩 효과 */
-		}
-
-		.slick-slide img {
-			height: auto; /* 비율 유지 */
-			object-fit: cover; /* 이미지 잘리지 않도록 조정 */
-		}
-
+		
+		/* 슬라이더 내부 이미지 스타일 */
 		.slick-slide {
 			float: none; /* 플로팅 제거 */
 			display: flex; /* 슬라이드 내부 정렬 */
 			justify-content: center;
 			align-items: center;
 			width: 100%; /* 슬라이드가 100% 너비를 유지 */
-			height: auto; /* 높이를 자동으로 설정 */
+			height: 760px; /* 고정된 높이 설정 */
 			box-sizing: border-box;
+			background-color: transparent;
+			padding: 0;
+			margin: 0;
+		}
+		
+		.slick-slide img {
+			display: block;
+			margin: 0; /* 여백 제거 */
+			width: 1200px; /* 고정 너비 설정 */
+			height: 760px; /* 고정 높이 설정 */
+			object-fit: cover; /* 이미지를 영역에 맞게 조정 */
+			background-color: transparent;
+			image-rendering: -webkit-optimize-contrast;
+			filter: brightness(1.05) contrast(1.05);
+		}
+		
+		.slick-list {
+			overflow: hidden; /* 영역 밖 콘텐츠 숨기기 */
+			position: relative; /* 위치 설정 */
+			height: 100%; /* 컨테이너 높이에 맞춤 */
+			background-color: transparent;
+		}
+
+		.slick-track {
+			display: flex; /* 트랙 정렬 */
+			transition: transform 0.3s ease-in-out; /* 부드러운 슬라이딩 효과 */
+			height: 100%; /* 컨테이너 높이에 맞춤 */
+			background-color: transparent;
+		}
+		
+		/* 슬라이더 화살표와 점 스타일 */
+		.slick-prev, .slick-next {
+			z-index: 10;
+			width: 40px;
+			height: 40px;
+		}
+		
+		.slick-prev {
+			left: 5px;
+		}
+		
+		.slick-next {
+			right: 5px;
+		}
+		
+		.slick-dots {
+			bottom: 10px;
+			z-index: 10;
+		}
+		
+		/* 모바일 대응 */
+		@media (max-width: 768px) {
+			.project-title {
+				font-size: 20px;
+				margin: 30px 0 15px;
+			}
+			
+			.slider {
+				height: auto;
+				margin-bottom: 40px;
+				max-width: 100%;
+			}
+			
+			.slick-slide {
+				width: 100% !important; /* 슬라이드 너비를 100%로 고정 */
+				height: auto; /* 모바일에서 비율에 맞게 조정 */
+			}
+			
+			.slick-slide img {
+				width: 100%;
+				height: auto;
+				aspect-ratio: 1200/760; /* 원본 비율 유지 */
+			}
+			
+			.slick-track {
+				display: flex;
+				justify-content: center;
+			}
+			
+			.slick-prev, .slick-next {
+				width: 30px;
+				height: 30px;
+			}
+		}
+		
+		/* 컨테이너 배경 투명화 */
+		.wrapper .container {
+			background-color: transparent;
+			width: 100%;
+			max-width: 1200px;
+			padding: 0;
+			margin: 0 auto;
+		}
+		
+		/* 슬릭 관련 요소 모두 투명 배경으로 설정 */
+		.slick-list, .slick-track, .slick-slide > div {
+			background-color: transparent !important;
+			width: 100%;
+		}
+		
+		/* 슬라이더 내부 div 요소 */
+		.slick-slide > div {
+			width: 100%;
+			height: 100%;
+			padding: 0;
+			margin: 0;
 		}
 	</style>
 
 	</head>
 
 	<body class="left-sidebar is-preload">
-	<!-- 모달 -->
-	<div class="modal-overlay">
-		<div class="modal">
-			<h2>문의 </h2>
-			<p>00:00 ~ 00:00</p>
-			<p>051-714-3163</p>
-			<button class="close-btn">닫기</button> <!-- 모달 중앙 닫기 버튼 -->
-		</div>
-	</div>
 		<div id="page-wrapper">
 
 			<!-- Header -->
-			<div id="header-wrapper">
-				<div id="header" class="container">
-
-					<!-- Logo -->
-					<h1 id="logo"><a href="index.html"></a></h1>
-
-					<!-- Nav -->
-					<nav id="nav">
-						<ul>
-							<li>
-								<a>Company</a>
-								<ul>
-									<li><a href="ourStory.html">Our Story</a></li>
-									<!--							<li><a href="location.html">Location</a></li>-->
-									<li><a href="ceo.html">CEO</a></li>
-									<!--                                 <li>-->
-									<!--                                    <a href="#">Phasellus consequat</a>-->
-									<!--                                    <ul>-->
-									<!--                                       <li><a href="#">Lorem ipsum dolor</a></li>-->
-									<!--                                       <li><a href="#">Phasellus consequat</a></li>-->
-									<!--                                       <li><a href="#">Magna phasellus</a></li>-->
-									<!--                                       <li><a href="#">Etiam dolore nisl</a></li>-->
-									<!--                                    </ul>-->
-									<!--                                 </li>-->
-									<li><a href="VisionGoals.html">Vision & Goals</a></li>
-								</ul>
-							</li>
-							<li><a>Project</a>
-								<ul>
-									<li><a href="hotel.html">Hotel</a></li>
-									<li><a href="lounge.html">Lounge</a></li>
-									<li><a href="ETC.html">ETC</a></li>
-								</ul>
-							</li>
-							<li class="break"><a href="location.html">Location</a></li>
-							<li><a href="#" onclick="openPopup()">QnA</a></li>
-						</ul>
-					</nav>
-
-				</div>
-			</div>
+			<div class="header-include"></div>
+			
 			<!-- Main -->
 			<div class="wrapper">
 				<div class="container" id="main">
 					<style>
-						.slick-slide img {
-							display: block;
-							margin: 0 auto; /* 수평 중앙 정렬 */
-							max-width: 100%; /* 부모 요소를 벗어나지 않도록 설정 */
-							max-height: 100%; /* 부모 요소를 벗어나지 않도록 설정 */
-							object-fit: cover; /* 이미지가 잘리지 않고 비율을 유지하면서 중앙 정렬 */
-						}
+						/* 이 스타일은 제거하고 위의 스타일로 통합합니다 */
 					</style>
-					<p>강남 삼성 본사(서초)</p>
+					<h2 class="project-title">강남 삼성 본사(서초)</h2>
 					<!-- Image Slider -->
 					<div class="slider">
 						<div>
-							<img src="images/직박구리/강남삼성본사서초/1.png" alt="Slide 1">
+							<img src="images/직박구리/강남삼성본사서초/1.png" alt="강남 삼성 본사 이미지 1">
 						</div>
 						<div>
-							<img src="images/직박구리/강남삼성본사서초/2.png" alt="Slide 1">
+							<img src="images/직박구리/강남삼성본사서초/2.png" alt="강남 삼성 본사 이미지 2">
 						</div>
 						<div>
-							<img src="images/직박구리/강남삼성본사서초/3.png" alt="Slide 1">
+							<img src="images/직박구리/강남삼성본사서초/3.png" alt="강남 삼성 본사 이미지 3">
 						</div>
 					</div>
-					<p>부산 문현동 부산은행 본점</p>
+					
+					<h2 class="project-title">부산 문현동 부산은행 본점</h2>
 					<!-- Image Slider -->
 					<div class="slider">
 						<div>
-							<img src="images/직박구리/부산문현동부산은행본점/1.png" alt="Slide 1">
+							<img src="images/직박구리/부산문현동부산은행본점/1.png" alt="부산은행 본점 이미지 1">
 						</div>
 						<div>
-							<img src="images/직박구리/부산문현동부산은행본점/2.png" alt="Slide 1">
+							<img src="images/직박구리/부산문현동부산은행본점/2.png" alt="부산은행 본점 이미지 2">
 						</div>
 					</div>
-					<p>성균관대학교 MIT 법학관</p>
+					
+					<h2 class="project-title">성균관대학교 MIT 법학관</h2>
 					<!-- Image Slider -->
 					<div class="slider">
 						<div>
-							<img src="images/직박구리/성균관대학교MIT 법학관/1.png" alt="Slide 1">
+							<img src="images/직박구리/성균관대학교MIT 법학관/1.png" alt="성균관대 법학관 이미지 1">
 						</div>
 						<div>
-							<img src="images/직박구리/성균관대학교MIT 법학관/2.png" alt="Slide 1">
+							<img src="images/직박구리/성균관대학교MIT 법학관/2.png" alt="성균관대 법학관 이미지 2">
 						</div>
 						<div>
-							<img src="images/직박구리/성균관대학교MIT 법학관/3.png" alt="Slide 1">
+							<img src="images/직박구리/성균관대학교MIT 법학관/3.png" alt="성균관대 법학관 이미지 3">
 						</div>
 						<div>
-							<img src="images/직박구리/성균관대학교MIT 법학관/4.png" alt="Slide 1">
+							<img src="images/직박구리/성균관대학교MIT 법학관/4.png" alt="성균관대 법학관 이미지 4">
 						</div>
 						<div>
-							<img src="images/직박구리/성균관대학교MIT 법학관/5.png" alt="Slide 1">
+							<img src="images/직박구리/성균관대학교MIT 법학관/5.png" alt="성균관대 법학관 이미지 5">
 						</div>
 						<div>
-							<img src="images/직박구리/성균관대학교MIT 법학관/6.png" alt="Slide 1">
+							<img src="images/직박구리/성균관대학교MIT 법학관/6.png" alt="성균관대 법학관 이미지 6">
 						</div>
 					</div>
-					<p>제주 TOPIA</p>
+					
+					<h2 class="project-title">제주 TOPIA</h2>
 					<!-- Image Slider -->
 					<div class="slider">
 						<div>
-							<img src="images/직박구리/제주토피아/1.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/1.png" alt="제주 토피아 이미지 1">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/2.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/2.png" alt="제주 토피아 이미지 2">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/3.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/3.png" alt="제주 토피아 이미지 3">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/4.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/4.png" alt="제주 토피아 이미지 4">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/5.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/5.png" alt="제주 토피아 이미지 5">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/6.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/6.png" alt="제주 토피아 이미지 6">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/7.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/7.png" alt="제주 토피아 이미지 7">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/8.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/8.png" alt="제주 토피아 이미지 8">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/9.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/9.png" alt="제주 토피아 이미지 9">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/10.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/10.png" alt="제주 토피아 이미지 10">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/11.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/11.png" alt="제주 토피아 이미지 11">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/12.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/12.png" alt="제주 토피아 이미지 12">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/13.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/13.png" alt="제주 토피아 이미지 13">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/14.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/14.png" alt="제주 토피아 이미지 14">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/15.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/15.png" alt="제주 토피아 이미지 15">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/16.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/16.png" alt="제주 토피아 이미지 16">
 						</div>
 						<div>
-							<img src="images/직박구리/제주토피아/17.png" alt="Slide 1">
+							<img src="images/직박구리/제주토피아/17.png" alt="제주 토피아 이미지 17">
 						</div>
 					</div>
-					<p>제주 핀크스</p>
+					
+					<h2 class="project-title">제주 핀크스</h2>
 					<!-- Image Slider -->
 					<div class="slider">
 						<div>
-							<img src="images/직박구리/제주핀크스/1.png" alt="Slide 1">
+							<img src="images/직박구리/제주핀크스/1.png" alt="제주 핀크스 이미지 1">
 						</div>
 						<div>
-							<img src="images/직박구리/제주핀크스/2.png" alt="Slide 1">
+							<img src="images/직박구리/제주핀크스/2.png" alt="제주 핀크스 이미지 2">
 						</div>
 					</div>
-					<p>태광 휘슬링락 CC</p>
+					
+					<h2 class="project-title">태광 휘슬링락 CC</h2>
 					<!-- Image Slider -->
 					<div class="slider">
 						<div>
-							<img src="images/직박구리/태광휘슬링락CC/1.png" alt="Slide 1">
+							<img src="images/직박구리/태광휘슬링락CC/1.png" alt="태광 휘슬링락 CC 이미지 1">
 						</div>
 						<div>
-							<img src="images/직박구리/태광휘슬링락CC/2.png" alt="Slide 1">
+							<img src="images/직박구리/태광휘슬링락CC/2.png" alt="태광 휘슬링락 CC 이미지 2">
 						</div>
 						<div>
-							<img src="images/직박구리/태광휘슬링락CC/3.png" alt="Slide 1">
+							<img src="images/직박구리/태광휘슬링락CC/3.png" alt="태광 휘슬링락 CC 이미지 3">
 						</div>
 						<div>
-							<img src="images/직박구리/태광휘슬링락CC/4.png" alt="Slide 1">
+							<img src="images/직박구리/태광휘슬링락CC/4.png" alt="태광 휘슬링락 CC 이미지 4">
 						</div>
 						<div>
-							<img src="images/직박구리/태광휘슬링락CC/5.png" alt="Slide 1">
+							<img src="images/직박구리/태광휘슬링락CC/5.png" alt="태광 휘슬링락 CC 이미지 5">
 						</div>
 						<div>
-							<img src="images/직박구리/태광휘슬링락CC/6.png" alt="Slide 1">
+							<img src="images/직박구리/태광휘슬링락CC/6.png" alt="태광 휘슬링락 CC 이미지 6">
 						</div>
 					</div>
-						<!-- End of Image Slider -->
 					<div class="row features">
 					</div>
 				</div>
 			</div>
 			<!-- Footer -->
-			<!--         <div id="footer-wrapper">-->
-			<!--            <div id="footer" class="container">-->
-			<div class="container">
-				<ul class="menu">
-					<li>사업자 등록 : 732-86-02749</li>
-					<li>주소 : 부산시 수영구 좌수영로 115, 3층</li>
-					<li>Tel : 051. 714. 3163</li>
-					<br />
-					<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-				</ul>
-			</div>
-			<!--            </div>-->
-			<!--         </div>-->
+			<div class="footer-include"></div>
 		</div>
 		<!-- Scripts -->
 <!--			<script src="assets/js/jquery.min.js"></script>-->
@@ -352,6 +344,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/include.js"></script>
 			<script>
 				$(document).ready(function(){
 					$('.slider').slick({
@@ -361,38 +354,12 @@
 						autoplaySpeed: 2000,
 						arrows: true,
 						dots: true,
-						centerMode: true,
-						centerPadding: '0px',  /* 양옆 여백 (원하는 값) */
+						centerMode: false,
+						adaptiveHeight: false,
+						fade: true, /* 페이드 효과로 변경 */
+						cssEase: 'linear', /* 부드러운 전환 효과 */
+						speed: 500
 					});
-				});
-
-				const modalOverlay = document.querySelector(".modal-overlay");
-				const closeModalBtn = document.querySelector(".close-btn");
-
-				// 모달 열기
-				function openPopup() {
-					modalOverlay.style.display = "block";
-				}
-
-				// 모달 닫기 (중앙 닫기 버튼)
-				function closePopup() {
-					modalOverlay.style.display = "none";
-				}
-
-				// 닫기 버튼 클릭 시 모달 닫기
-				closeModalBtn.addEventListener('click', closePopup);
-
-				// 모달 닫기 (배경 클릭)
-				modalOverlay.addEventListener('click', function (e) {
-					if (e.target === modalOverlay) {
-						closePopup();
-					}
-				});
-
-				// QnA 버튼 클릭 이벤트
-				document.querySelector("a[href='#']").addEventListener("click", function(e) {
-					e.preventDefault();
-					openPopup();
 				});
 			</script>
 	</body>

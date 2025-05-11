@@ -1,0 +1,31 @@
+/* 푸터 스타일 */
+#footer-wrapper {
+   background: #333;
+   color: #fff;
+   padding: 20px 0;
+   margin-top: 40px;
+}
+
+.footer-menu {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+   text-align: center;
+}
+
+.footer-menu li {
+   display: inline-block;
+   margin: 0 10px;
+   color: rgba(255, 255, 255, 0.7);
+   font-size: 0.9em;
+}
+
+.footer-menu li a {
+   color: rgba(255, 255, 255, 0.9);
+   text-decoration: none;
+}
+
+.footer-menu li a:hover {
+   color: #fff;
+   text-decoration: underline;
+} 
