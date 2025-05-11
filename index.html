@@ -217,13 +217,26 @@
          .main-title {
             font-family: 'Noto Sans KR', sans-serif;
             text-align: center;
-            font-size: 2em;
+            font-size: 2.5em;
             font-weight: 700;
-            margin: 40px 0 30px;
+            margin: 40px 0 35px;
             color: #333;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            opacity: 0; /* 처음에는 보이지 않음 */
+            animation: smoothFadeIn 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards; /* 페이지 로드 직후 시작 */
+         }
+         
+         .main-title span {
+            position: relative;
+            z-index: 1;
+            padding: 0 15px;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #444, #666, #444);
          }
          
          .main-title:after {
@@ -232,9 +245,56 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 0; /* 처음에는 선이 없음 */
             height: 3px;
-            background: rgba(128, 128, 128, 0.6);
+            background: linear-gradient(90deg, rgba(100, 100, 100, 0.1), rgba(70, 70, 70, 0.8), rgba(100, 100, 100, 0.1));
+            border-radius: 50px;
+            opacity: 0;
+            animation: expandWidth 1s cubic-bezier(0.17, 0.84, 0.44, 1) forwards 1.5s; /* 타이틀이 나타난 후에 선이 확장됨 */
+         }
+         
+         .main-title:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 10px;
+            width: 0; /* 처음에는 선이 없음 */
+            height: 1px;
+            background: rgba(150, 150, 150, 0.2);
+            opacity: 0;
+            animation: expandWidthBefore 1s cubic-bezier(0.17, 0.84, 0.44, 1) forwards 1.9s; /* 첫 번째 선 이후에 두 번째 선이 확장됨 */
+         }
+         
+         @keyframes smoothFadeIn {
+            0% { opacity: 0; transform: translateY(-15px); }
+            20% { opacity: 0.2; }
+            100% { opacity: 1; transform: translateY(0); }
+         }
+         
+         @keyframes expandWidth {
+            0% { width: 0; opacity: 0; }
+            100% { width: 120px; opacity: 1; }
+         }
+         
+         /* 메인 타이틀 전 선 애니메이션 */
+         @keyframes expandWidthBefore {
+            0% { width: 0; opacity: 0; }
+            100% { width: 250px; opacity: 1; }
+         }
+         
+         @media (max-width: 768px) {
+            .main-title {
+               font-size: 2.2em;
+               margin: 30px 0 25px;
+            }
+         }
+         
+         @media (max-width: 480px) {
+            .main-title {
+               font-size: 1.8em;
+               margin: 25px 0 20px;
+            }
          }
       </style>
    </head>
@@ -247,7 +307,7 @@
          <div class="wrapper">
             <div class="container" id="main">
                   <!-- 메인 타이틀 추가 -->
-                  <h2 class="main-title">공감에 오신 것을 환영합니다</h2>
+                  <h2 class="main-title"><span>공감에 오신 것을 환영합니다</span></h2>
                   
                   <!-- Image Slider -->
                   <div class="slider">
