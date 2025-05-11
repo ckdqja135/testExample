@@ -176,15 +176,41 @@
          .main-content {
             font-family: 'Noto Sans KR', sans-serif;
             text-align: center;
-            font-size: 1.2em;
-            line-height: 1.6;
+            font-size: 1.3rem; /* 폰트 크기 키움 */
+            font-weight: 500; /* 약간 더 굵게 */
+            line-height: 1.5;
             color: #333;
             margin: 30px auto;
-            max-width: 800px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.8);
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px 25px;
+            background: rgba(255, 255, 255, 0.9); /* 배경색 더 밝게 */
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1); /* 그림자 약간 강화 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+         }
+         
+         .main-content span {
+            display: inline-block;
+            max-width: 100%;
+            text-align: center;
+         }
+         
+         /* 화면 크기에 따른 텍스트 조정 */
+         @media (max-width: 768px) {
+            .main-content {
+               font-size: 1.15rem; /* 모바일에서도 글꼴 키움 */
+               padding: 12px 15px;
+            }
+         }
+         
+         @media (max-width: 480px) {
+            .main-content {
+               font-size: 1rem; /* 작은 모바일에서도 글꼴 키움 */
+               padding: 10px;
+            }
          }
 
          /* 메인 타이틀 스타일 */
@@ -242,7 +268,7 @@
                <div class="row features">
                </div>
                <div class="main-content">
-                  "공간을 디자인하는 것은 단순히 형태를 만드는 것을 넘어, 그 안에 삶의 이야기를 담고, 시간과 기억이 머무를 수 있는 특별한 공간을 창조하는 일입니다."
+                  <span>"공간을 디자인하는 것은 단순히 형태를 만드는 것을 넘어, 삶의 이야기를 담고 특별한 기억이 머무는 공간을 창조하는 일입니다."</span>
                </div>
             </div> 
          </div>
