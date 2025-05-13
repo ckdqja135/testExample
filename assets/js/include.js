@@ -111,12 +111,19 @@ function initModalFunctions() {
   const qnaLinks = document.querySelectorAll("a[href='#']");
   qnaLinks.forEach(function(link) {
     if (link.textContent.trim() === "QnA" || link.parentElement.textContent.trim() === "QnA") {
-      link.addEventListener("click", function(e) {
-        e.preventDefault();
-        openPopup();
-      });
+      // 기존 이벤트 리스너 제거 (중복 방지)
+      link.removeEventListener('click', handleQnAClick);
+      // 새 이벤트 리스너 등록
+      link.addEventListener("click", handleQnAClick);
     }
   });
+}
+
+// QnA 클릭 이벤트 핸들러 함수 (외부로 분리)
+function handleQnAClick(e) {
+  e.preventDefault();
+  e.stopPropagation(); // 이벤트 전파 중지
+  openPopup();
 }
 
 // 모바일/태블릿 메뉴 초기화 함수
@@ -144,6 +151,9 @@ function initMobileMenus() {
       const parentLi = menuItem.parentElement;
       const hasSubmenu = parentLi.querySelector('ul') !== null;
       
+      // QnA 메뉴인지 확인
+      const isQnAMenu = menuItem.textContent.trim() === "QnA";
+      
       if (hasSubmenu) {
         // 기존 이벤트 리스너 제거 (중복 방지)
         menuItem.removeEventListener('click', toggleSubmenu);
@@ -158,7 +168,18 @@ function initMobileMenus() {
             e.preventDefault(); // 링크가 없거나 #인 경우에만 기본 동작 방지
           }
         });
+      } else if (isQnAMenu) {
+        // QnA 링크가 모바일에서도 작동하도록 이벤트 처리
+        menuItem.removeEventListener('click', handleQnAClick);
+        menuItem.addEventListener('click', handleQnAClick);
       }
+    });
+    
+    // QnA 메뉴 클릭 이벤트 추가 (모바일 대응)
+    const qnaLinksMobile = document.querySelectorAll('#nav > ul > li > a[onclick*="openPopup"]');
+    qnaLinksMobile.forEach(function(qnaLink) {
+      qnaLink.removeEventListener('click', handleQnAClick);
+      qnaLink.addEventListener('click', handleQnAClick);
     });
     
     // 메뉴 외부 클릭 시 모든 서브메뉴 닫기
