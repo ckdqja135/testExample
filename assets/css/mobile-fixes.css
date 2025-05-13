@@ -70,6 +70,7 @@
         min-width: 150px !important;
         margin-top: 0.5em !important;
         z-index: 1000 !important;
+        display: none !important; /* 기본적으로 모두 숨김 */
     }
     
     /* 하위 메뉴 리스트 스타일 제거 */
@@ -113,6 +114,15 @@
     /* 클릭한 메뉴의 드롭다운만 표시 */
     #nav > ul > li.clicked:hover ul {
         display: block !important;
+    }
+    
+    /* 드롭다운 위치 조정 */
+    .dropotron {
+        display: none !important;
+    }
+    
+    #nav > ul > li.clicked .dropotron {
+        display: none !important;
     }
 }
 

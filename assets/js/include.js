@@ -126,6 +126,16 @@ function initMobileMenus() {
     // 우선 기존 기능을 제거
     removeStandardMenuBehavior();
     
+    // 모든 하위 메뉴 초기 상태로 숨김
+    document.querySelectorAll('#nav ul ul').forEach(function(submenu) {
+      submenu.style.display = 'none';
+    });
+    
+    // 모든 상위 메뉴에서 clicked 클래스 제거
+    document.querySelectorAll('#nav > ul > li').forEach(function(item) {
+      item.classList.remove('clicked');
+    });
+    
     // 하위 메뉴가 있는 모든 상위 메뉴 항목에 클릭 이벤트 추가
     const parentMenus = document.querySelectorAll('#nav > ul > li > a');
     
@@ -167,22 +177,48 @@ function initMobileMenus() {
 function closeAllMenus() {
   document.querySelectorAll('#nav > ul > li.clicked').forEach(function(item) {
     item.classList.remove('clicked');
+    // 서브메뉴도 명시적으로 숨김 처리
+    const submenu = item.querySelector('ul');
+    if (submenu) {
+      submenu.style.display = 'none';
+    }
+  });
+  
+  // 추가로 모든 하위 메뉴 요소 숨김
+  document.querySelectorAll('#nav ul ul').forEach(function(submenu) {
+    submenu.style.display = 'none';
   });
 }
 
 // 서브메뉴 토글 함수
 function toggleSubmenu(e) {
   const parentLi = this.parentElement;
+  const submenu = parentLi.querySelector('ul');
   
   // 다른 메뉴의 clicked 클래스 제거 (다른 열린 메뉴 닫기)
   document.querySelectorAll('#nav > ul > li.clicked').forEach(function(item) {
     if (item !== parentLi) {
       item.classList.remove('clicked');
+      // 다른 서브메뉴도 명시적으로 숨김 처리
+      const otherSubmenu = item.querySelector('ul');
+      if (otherSubmenu) {
+        otherSubmenu.style.display = 'none';
+      }
     }
   });
   
   // 현재 메뉴의 clicked 토글
-  parentLi.classList.toggle('clicked');
+  if (parentLi.classList.contains('clicked')) {
+    parentLi.classList.remove('clicked');
+    if (submenu) {
+      submenu.style.display = 'none';
+    }
+  } else {
+    parentLi.classList.add('clicked');
+    if (submenu) {
+      submenu.style.display = 'block';
+    }
+  }
   
   // 이벤트 중단 (상위 요소로 전파 방지)
   e.stopPropagation();
