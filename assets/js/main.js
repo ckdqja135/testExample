@@ -34,7 +34,9 @@
 		});
 
 	// Nav.
-
+		// 모바일 메뉴 생성 비활성화 (PC 메뉴 그대로 사용)
+		// PC 환경과 동일한 메뉴 표시
+		/*
 		// Button.
 			$(
 				'<div id="navButton">' +
@@ -44,12 +46,34 @@
 				.appendTo($body);
 
 		// Panel.
+			// 직접 모바일 메뉴 내용 생성
+			var mobileMenuContent = '<nav>';
+			mobileMenuContent += '<a href="index.html" class="link depth-0">Home</a>';
+			
+			// 모든 상위 메뉴 항목 추가
+			$('#nav > ul > li > a').each(function() {
+				var $this = $(this);
+				var text = $this.text();
+				var href = $this.attr('href') || '#';
+				
+				mobileMenuContent += '<a href="' + href + '" class="link depth-0">' + text + '</a>';
+				
+				// 서브메뉴가 있는 경우 추가
+				var $subItems = $this.parent().find('ul > li > a');
+				$subItems.each(function() {
+					var $subItem = $(this);
+					var subText = $subItem.text();
+					var subHref = $subItem.attr('href') || '#';
+					
+					mobileMenuContent += '<a href="' + subHref + '" class="link depth-1">' + subText + '</a>';
+				});
+			});
+			
+			mobileMenuContent += '</nav>';
+			
 			$(
 				'<div id="navPanel">' +
-					'<nav>' +
-						'<a href="index.html" class="link depth-0">Home</a>' +
-						$('#nav').navList() +
-					'</nav>' +
+					mobileMenuContent +
 				'</div>'
 			)
 				.appendTo($body)
@@ -62,5 +86,12 @@
 					target: $body,
 					visibleClass: 'navPanel-visible'
 				});
+
+			// Make sure nav panel is displayed in mobile view
+			if (breakpoints.active('<=mobile')) {
+				$('#navPanel').css('display', 'block');
+				$('#navButton').css('display', 'block');
+			}
+		*/
 
 })(jQuery);

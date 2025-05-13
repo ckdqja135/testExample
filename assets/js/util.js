@@ -17,11 +17,16 @@
 				href = $this.attr('href'),
 				target = $this.attr('target');
 
+			// 빈 href를 가진 메뉴 항목도 처리
+			if (typeof href === 'undefined' || href == '') {
+				href = '#';
+			}
+
 			b.push(
 				'<a ' +
 					'class="link depth-' + indent + '"' +
 					( (typeof target !== 'undefined' && target != '') ? ' target="' + target + '"' : '') +
-					( (typeof href !== 'undefined' && href != '') ? ' href="' + href + '"' : '') +
+					' href="' + href + '"' +
 				'>' +
 					'<span class="indent-' + indent + '"></span>' +
 					$this.text() +

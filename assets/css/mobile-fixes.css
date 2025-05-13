@@ -1,0 +1,150 @@
+/* 모바일 및 태블릿 메뉴 수정 */
+@media screen and (max-width: 1080px) {
+    /* 네비게이션 메뉴 표시 */
+    #nav {
+        display: block !important;
+        position: relative !important;
+        right: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* 헤더를 컴팩트하게 */
+    #header {
+        justify-content: center !important;
+        flex-direction: column !important;
+    }
+    
+    /* 기존 모바일 메뉴 비활성화 */
+    #navPanel, #navButton {
+        display: none !important;
+    }
+    
+    /* PC와 동일한 메뉴 레이아웃 유지 */
+    #nav > ul {
+        display: table !important;
+        width: auto !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        text-align: center !important;
+        table-layout: fixed !important;
+    }
+    
+    /* 로고 위치 조정 */
+    #logo {
+        position: relative !important;
+        height: auto !important;
+        margin: 0 auto 0.5em auto !important;
+        left: 0 !important;
+        top: 0 !important;
+    }
+    
+    /* 헤더 패딩 조정 */
+    #header-wrapper {
+        padding: 0.5em 0 !important;
+    }
+
+    /* 메뉴 항목의 화살표 제거 */
+    #nav > ul > li > a::after {
+        content: none !important;
+        display: none !important;
+    }
+    
+    #nav > ul > li > a {
+        background-image: none !important;
+        padding-right: 0 !important;
+        margin: 0 !important;
+    }
+    
+    /* 서브메뉴 스타일 */
+    #nav ul ul {
+        background: #333 !important;
+        border-radius: 5px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+        list-style: none !important;
+        list-style-type: none !important;
+        list-style-image: none !important;
+        position: absolute !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        min-width: 150px !important;
+        margin-top: 0.5em !important;
+        z-index: 1000 !important;
+    }
+    
+    /* 하위 메뉴 리스트 스타일 제거 */
+    #nav ul ul li, 
+    .dropotron li,
+    #nav ul li ul li {
+        list-style: none !important;
+        list-style-type: none !important;
+        list-style-image: none !important;
+        text-indent: 0 !important;
+    }
+    
+    /* 하위 메뉴 앵커 스타일 재정의 */
+    #nav ul ul li a, 
+    .dropotron li a {
+        padding-left: 1em !important;
+        text-indent: 0 !important;
+        background-image: none !important;
+        display: block !important;
+    }
+    
+    /* 메뉴 위치 조정을 위한 상위 메뉴 항목 포지셔닝 */
+    #nav > ul > li {
+        display: table-cell !important;
+        text-align: center !important;
+        padding: 0 0.8em !important;
+        float: none !important;
+        position: relative !important;
+    }
+    
+    /* 클릭 상태에서만 서브메뉴 표시 */
+    #nav > ul > li.clicked > ul {
+        display: block !important;
+    }
+    
+    /* 호버 상태에서는 서브메뉴 표시하지 않음 */
+    #nav > ul > li:hover ul {
+        display: none !important;
+    }
+    
+    /* 클릭한 메뉴의 드롭다운만 표시 */
+    #nav > ul > li.clicked:hover ul {
+        display: block !important;
+    }
+}
+
+/* 중앙점 및 기본 리스트 스타일 제거 */
+.dropotron,
+.dropotron li,
+.dropotron li a,
+#nav ul ul,
+#nav ul ul li,
+#nav ul ul li a {
+    list-style: none !important;
+    list-style-type: none !important;
+    list-style-image: none !important;
+    text-indent: 0 !important;
+}
+
+/* 가상 요소 제거 */
+.dropotron li a:before, 
+.dropotron li a:after,
+#nav ul ul li a:before,
+#nav ul ul li a:after,
+.dropotron li a::before,
+.dropotron li a::after,
+#nav ul ul li a::before,
+#nav ul ul li a::after {
+    content: none !important;
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    position: absolute !important;
+} 
