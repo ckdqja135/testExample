@@ -147,6 +147,33 @@ function initMobileMenus() {
       item.classList.remove('clicked');
     });
     
+    // 로고(홈 버튼) 터치/클릭 이벤트 개선
+    const logoLink = document.querySelector('#logo a');
+    if (logoLink) {
+      // 기존 이벤트 리스너 제거 (중복 방지)
+      logoLink.removeEventListener('click', navigateToHome);
+      logoLink.removeEventListener('touchstart', navigateToHome);
+      
+      // 새 이벤트 리스너 등록
+      if ('ontouchstart' in window) {
+        logoLink.addEventListener('touchstart', navigateToHome, {passive: false});
+      }
+      // 클릭 이벤트는 터치 이벤트가 있어도 추가 (일부 디바이스에서 클릭만 감지되는 경우 대비)
+      logoLink.addEventListener('click', navigateToHome);
+      
+      // 클릭 영역 확장을 위해 상위 요소인 #logo에도 이벤트 추가
+      const logoContainer = document.querySelector('#logo');
+      if (logoContainer) {
+        logoContainer.removeEventListener('click', navigateToHome);
+        logoContainer.removeEventListener('touchstart', navigateToHome);
+        
+        if ('ontouchstart' in window) {
+          logoContainer.addEventListener('touchstart', navigateToHome, {passive: false});
+        }
+        logoContainer.addEventListener('click', navigateToHome);
+      }
+    }
+    
     // 하위 메뉴가 있는 모든 상위 메뉴 항목에 클릭 이벤트 추가
     const parentMenus = document.querySelectorAll('#nav > ul > li > a');
     
@@ -320,3 +347,14 @@ window.addEventListener('resize', function() {
     initMobileMenus();
   }, 250);
 });
+
+// 홈 버튼 네비게이션 함수
+function navigateToHome(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  
+  // 약간의 지연을 두고 페이지 이동
+  setTimeout(function() {
+    window.location.href = 'index.html';
+  }, 50);
+}
