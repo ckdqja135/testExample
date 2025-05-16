@@ -123,7 +123,11 @@ function initModalFunctions() {
 function handleQnAClick(e) {
   e.preventDefault();
   e.stopPropagation(); // 이벤트 전파 중지
-  openPopup();
+  
+  // 약간의 지연을 두고 모달 열기 (모바일에서 더블 클릭 방지)
+  setTimeout(function() {
+    openPopup();
+  }, 10);
 }
 
 // 모바일/태블릿 메뉴 초기화 함수
@@ -157,21 +161,29 @@ function initMobileMenus() {
       if (hasSubmenu) {
         // 기존 이벤트 리스너 제거 (중복 방지)
         menuItem.removeEventListener('click', toggleSubmenu);
-        // 새 이벤트 리스너 등록
-        menuItem.addEventListener('click', toggleSubmenu);
+        menuItem.removeEventListener('touchstart', toggleSubmenu);
+        
+        // 새 이벤트 리스너 등록 (클릭과 터치 모두 처리)
+        menuItem.addEventListener('click', toggleSubmenu, {passive: false});
+        
+        // 모바일 환경에서는 터치 이벤트도 추가
+        if ('ontouchstart' in window) {
+          menuItem.addEventListener('touchstart', toggleSubmenu, {passive: false});
+        }
         
         // 링크의 기본 동작 방지 (href="#"이 아닌 경우)
-        menuItem.addEventListener('click', function(e) {
-          if (menuItem.getAttribute('href') && menuItem.getAttribute('href') !== '#') {
-            // 실제 링크가 있는 경우 이벤트 전파 허용
-          } else {
-            e.preventDefault(); // 링크가 없거나 #인 경우에만 기본 동작 방지
-          }
-        });
+        // 메인 토글 함수로 통합되어 필요 없음
       } else if (isQnAMenu) {
         // QnA 링크가 모바일에서도 작동하도록 이벤트 처리
         menuItem.removeEventListener('click', handleQnAClick);
-        menuItem.addEventListener('click', handleQnAClick);
+        
+        // 모바일 환경에서는 터치 이벤트도 추가
+        if ('ontouchstart' in window) {
+          menuItem.removeEventListener('touchstart', handleQnAClick);
+          menuItem.addEventListener('touchstart', handleQnAClick, {passive: false});
+        } else {
+          menuItem.addEventListener('click', handleQnAClick);
+        }
       }
     });
     
@@ -179,7 +191,14 @@ function initMobileMenus() {
     const qnaLinksMobile = document.querySelectorAll('#nav > ul > li > a[onclick*="openPopup"]');
     qnaLinksMobile.forEach(function(qnaLink) {
       qnaLink.removeEventListener('click', handleQnAClick);
-      qnaLink.addEventListener('click', handleQnAClick);
+      
+      // 모바일 환경에서는 터치 이벤트도 추가
+      if ('ontouchstart' in window) {
+        qnaLink.removeEventListener('touchstart', handleQnAClick);
+        qnaLink.addEventListener('touchstart', handleQnAClick, {passive: false});
+      } else {
+        qnaLink.addEventListener('click', handleQnAClick);
+      }
     });
     
     // 메뉴 외부 클릭 시 모든 서브메뉴 닫기
@@ -188,6 +207,15 @@ function initMobileMenus() {
         closeAllMenus();
       }
     });
+    
+    // 모바일 환경에서는 터치 이벤트도 추가
+    if ('ontouchstart' in window) {
+      document.addEventListener('touchstart', function(e) {
+        if (!e.target.closest('#nav')) {
+          closeAllMenus();
+        }
+      }, {passive: true});
+    }
   } else {
     // PC 환경에서는 원래 메뉴 동작 복원
     restoreStandardMenuBehavior();
@@ -213,6 +241,9 @@ function closeAllMenus() {
 
 // 서브메뉴 토글 함수
 function toggleSubmenu(e) {
+  e.preventDefault(); // 먼저 기본 이벤트 동작 방지
+  e.stopPropagation(); // 이벤트 전파 중지
+  
   const parentLi = this.parentElement;
   const submenu = parentLi.querySelector('ul');
   
@@ -240,9 +271,6 @@ function toggleSubmenu(e) {
       submenu.style.display = 'block';
     }
   }
-  
-  // 이벤트 중단 (상위 요소로 전파 방지)
-  e.stopPropagation();
 }
 
 // 기존 메뉴 동작 제거 (dropotron 호버 이벤트 제거)
